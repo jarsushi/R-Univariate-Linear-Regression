@@ -27,5 +27,8 @@ duration(85)
 predictorData <- data.frame(waiting=85)
 predict(eruption.lm, predictorData)
 
+##Look at t value, Pr(>|t|) and such from summary
+summary(eruption.lm)$r.squared
+help(summary.lm)
 
 
