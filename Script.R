@@ -27,8 +27,32 @@ duration(85)
 predictorData <- data.frame(waiting=85)
 predict(eruption.lm, predictorData)
 
-##Look at t value, Pr(>|t|) and such from summary
-summary(eruption.lm)$r.squared
-help(summary.lm)
+#Calaculate statistics on the model
+summary(eruption.lm)
+
+#Calculate the 95% confidence interval of a waiting time of 85 min
+predict(eruption.lm, predictorData, interval="confidence")
+
+#Calculate the 95% prediction interval of a waiting time of 85 min
+predict(eruption.lm, predictorData, interval="predict")
+
+#Plot the residuals
+eruption.res <- resid(eruption.lm)
+plot(train$waiting, eruption.res, ylab="Residuals", xlab="Waiting Time", main="Old Faithful Eruptions") 
+abline(0,0)
+
+#Plot the standardized residual
+eruption.stdres <- rstandard(eruption.lm)
+plot(train$waiting, eruption.stdres, ylab="Standardized Residuals", xlab="Waiting Time", main="Old Faithful Eruptions")
+abline(0,0)
+
+#Plot the normalized probablity
+qqnorm(eruption.stdres, ylab="Standardized Residuals", xlab="Normal Scores", main="Old Faithful Eruptions") 
+qqline(eruption.stdres)
+
+
+
+
+
 
 
